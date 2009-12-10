@@ -1,2 +1,2 @@
-class <%= singular_name.capitalize %> < ActiveRecord::Base
+class <%= singular_name.classify %> < ActiveRecord::Base
 end

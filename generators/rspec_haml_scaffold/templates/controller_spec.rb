@@ -2,37 +2,37 @@ require File.dirname(__FILE__) + '<%= '/..' * class_nesting_depth %>/../spec_hel
 
 describe <%= controller_class_name %>Controller, "#route_for" do
 
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'index' } to /<%= name.pluralize %>" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "index").should == "/<%= name.pluralize %>"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'index' } to /<%= name.pluralize.underscore %>" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "index").should == "/<%= name.pluralize.underscore %>"
   end
   
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'new' } to /<%= name.pluralize %>/new" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "new").should == "/<%= name.pluralize %>/new"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'new' } to /<%= name.pluralize.underscore %>/new" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "new").should == "/<%= name.pluralize.underscore %>/new"
   end
   
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'show', :id => 1 } to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "show", :id => 1).should == "/<%= name.pluralize %>/1"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'show', :id => 1 } to /<%= name.pluralize.underscore %>/1" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "show", :id => 1).should == "/<%= name.pluralize.underscore %>/1"
   end
   
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'edit', :id => 1 } to /<%= name.pluralize %>/1<%= resource_edit_path %>" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "edit", :id => 1).should == "/<%= name.pluralize %>/1<%= resource_edit_path %>"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'edit', :id => 1 } to /<%= name.pluralize.underscore %>/1<%= resource_edit_path %>" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "edit", :id => 1).should == "/<%= name.pluralize.underscore %>/1<%= resource_edit_path %>"
   end
   
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'update', :id => 1} to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "update", :id => 1).should == "/<%= name.pluralize %>/1"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'update', :id => 1} to /<%= name.pluralize.underscore %>/1" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "update", :id => 1).should == "/<%= name.pluralize.underscore %>/1"
   end
   
-  it "should map { :controller => '<%= name.pluralize %>', :action => 'destroy', :id => 1} to /<%= name.pluralize %>/1" do
-    route_for(:controller => "<%= name.pluralize %>", :action => "destroy", :id => 1).should == "/<%= name.pluralize %>/1"
+  it "should map { :controller => '<%= name.pluralize %>', :action => 'destroy', :id => 1} to /<%= name.pluralize.underscore %>/1" do
+    route_for(:controller => "<%= name.pluralize %>", :action => "destroy", :id => 1).should == "/<%= name.pluralize.underscore %>/1"
   end
   
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>)
-    <%= singular_name.capitalize %>.stub!(:find).and_return([@<%= file_name %>])
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>)
+    <%= singular_name.classify %>.stub!(:find).and_return([@<%= file_name %>])
   end
   
   def do_get
@@ -50,7 +50,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
   
   it "should find all <%= name.pluralize %>" do
-    <%= singular_name.capitalize %>.should_receive(:find).with(:all).and_return([@<%= file_name %>])
+    <%= singular_name.classify %>.should_receive(:find).with(:all).and_return([@<%= file_name %>])
     do_get
   end
   
@@ -60,11 +60,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>.xml" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>.xml" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>, :to_xml => "XML")
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>, :to_xml => "XML")
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def do_get
@@ -78,7 +78,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 
   it "should find all <%= name.pluralize %>" do
-    <%= singular_name.capitalize %>.should_receive(:find).with(:all).and_return([@<%= file_name %>])
+    <%= singular_name.classify %>.should_receive(:find).with(:all).and_return([@<%= file_name %>])
     do_get
   end
   
@@ -89,11 +89,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>/1" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>/1" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>)
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>)
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def do_get
@@ -111,7 +111,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
   
   it "should find the <%= file_name %> requested" do
-    <%= singular_name.capitalize %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
     do_get
   end
   
@@ -121,11 +121,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>/1.xml" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>/1.xml" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>, :to_xml => "XML")
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>, :to_xml => "XML")
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def do_get
@@ -139,7 +139,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
   
   it "should find the <%= file_name %> requested" do
-    <%= singular_name.capitalize %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
     do_get
   end
   
@@ -150,11 +150,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>/new" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>/new" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>)
-    <%= singular_name.capitalize %>.stub!(:new).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>)
+    <%= singular_name.classify %>.stub!(:new).and_return(@<%= file_name %>)
   end
   
   def do_get
@@ -172,7 +172,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
   
   it "should create an new <%= file_name %>" do
-    <%= singular_name.capitalize %>.should_receive(:new).and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:new).and_return(@<%= file_name %>)
     do_get
   end
   
@@ -187,11 +187,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize %>/1/edit" do
+describe <%= controller_class_name %>Controller, "handling GET /<%= name.pluralize.underscore %>/1/edit" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>)
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>)
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def do_get
@@ -209,7 +209,7 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
   
   it "should find the <%= file_name %> requested" do
-    <%= singular_name.capitalize %>.should_receive(:find).and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:find).and_return(@<%= file_name %>)
     do_get
   end
   
@@ -219,11 +219,11 @@ describe <%= controller_class_name %>Controller, "handling GET /<%= name.plurali
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling POST /<%= name.pluralize %>" do
+describe <%= controller_class_name %>Controller, "handling POST /<%= name.pluralize.underscore %>" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>, :to_param => "1")
-    <%= singular_name.capitalize %>.stub!(:new).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>, :to_param => "1")
+    <%= singular_name.classify %>.stub!(:new).and_return(@<%= file_name %>)
   end
   
   def post_with_successful_save
@@ -237,7 +237,7 @@ describe <%= controller_class_name %>Controller, "handling POST /<%= name.plural
   end
   
   it "should create a new <%= file_name %>" do
-    <%= singular_name.capitalize %>.should_receive(:new).with({}).and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:new).with({}).and_return(@<%= file_name %>)
     post_with_successful_save
   end
 
@@ -252,11 +252,11 @@ describe <%= controller_class_name %>Controller, "handling POST /<%= name.plural
   end
 end
 
-describe <%= controller_class_name %>Controller, "handling PUT /<%= name.pluralize %>/1" do
+describe <%= controller_class_name %>Controller, "handling PUT /<%= name.pluralize.underscore %>/1" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>, :to_param => "1")
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>, :to_param => "1")
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def put_with_successful_update
@@ -270,7 +270,7 @@ describe <%= controller_class_name %>Controller, "handling PUT /<%= name.plurali
   end
   
   it "should find the <%= file_name %> requested" do
-    <%= singular_name.capitalize %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
     put_with_successful_update
   end
 
@@ -298,8 +298,8 @@ end
 describe <%= controller_class_name %>Controller, "handling DELETE /<%= name %>/1" do
 
   before do
-    @<%= file_name %> = mock_model(<%= singular_name.capitalize %>, :destroy => true)
-    <%= singular_name.capitalize %>.stub!(:find).and_return(@<%= file_name %>)
+    @<%= file_name %> = mock_model(<%= singular_name.classify %>, :destroy => true)
+    <%= singular_name.classify %>.stub!(:find).and_return(@<%= file_name %>)
   end
   
   def do_delete
@@ -307,7 +307,7 @@ describe <%= controller_class_name %>Controller, "handling DELETE /<%= name %>/1
   end
 
   it "should find the <%= file_name %> requested" do
-    <%= singular_name.capitalize %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
+    <%= singular_name.classify %>.should_receive(:find).with("1").and_return(@<%= file_name %>)
     do_delete
   end
   

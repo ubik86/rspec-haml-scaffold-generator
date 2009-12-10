@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe <%= singular_name.capitalize %> do
+describe <%= singular_name.classify %> do
   before(:each) do
-    @<%= file_name %> = <%= singular_name.capitalize %>.new
+    @<%= file_name %> = <%= singular_name.classify %>.new
   end
 
   it "should be valid" do

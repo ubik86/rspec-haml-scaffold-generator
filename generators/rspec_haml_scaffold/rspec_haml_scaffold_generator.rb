@@ -159,7 +159,7 @@ class RspecHamlScaffoldGenerator < Rails::Generator::NamedBase
 
     def route_resources(resource)
       sentinel = 'ActionController::Routing::Routes.draw do |map|'
-      logger.route "map.resources #{resource}"
+      logger.route "map.resources #{resource.pluralize.underscore}"
       unless options[:pretend]
         gsub_file 'config/routes.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
         
@@ -168,7 +168,7 @@ class RspecHamlScaffoldGenerator < Rails::Generator::NamedBase
              two = resource.split('/')[1]
              "#{match}\n  map.namespace(:#{one}) do |#{one}|\n    #{one}.resources :#{two.pluralize}\n  end"
            else
-             "#{match}\n  map.resources :#{resource.pluralize}\n"
+             "#{match}\n  map.resources :#{resource.pluralize.underscore}\n"
            end        
     
         end
